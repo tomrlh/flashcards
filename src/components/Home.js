@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { View, ScrollView, Text } from 'react-native'
-import { connect } from 'react-redux'
-import { Button } from 'react-native-elements'
 import { Actions } from 'react-native-router-flux'
+import { connect } from 'react-redux'
+import { View, ScrollView, Text } from 'react-native'
+import { Button } from 'react-native-elements'
 import Deck from './Deck'
-import styles from '../styles'
 
 class Home extends Component {
 
@@ -16,7 +15,7 @@ class Home extends Component {
         const { decks } = this.props
         
         return (
-            <View style={{flex: 1, justifyContent: 'space-between'}}>
+            <View style={{flex: 1, justifyContent: 'space-between', marginBottom: 20}}>
                 <ScrollView style={{flex: 1}}>
                     {
                         decks !== undefined && (
@@ -26,10 +25,8 @@ class Home extends Component {
                 </ScrollView>
 
                 <Button
-                    buttonStyle={[styles.button]}
                     backgroundColor="#333"
                     large
-                    icon={{name: 'plus-circle', type: 'font-awesome'}}
                     title='ADD DECK' 
                     onPress={() => Actions.deckForm({mode: 'new'})}
                 />

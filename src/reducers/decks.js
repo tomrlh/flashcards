@@ -6,29 +6,21 @@ let STATE_INITIAL = {
         itens: [
             {
                 parentID: 2,
-                question: 'Naruto é a raposa de nove caudas?',
-                resolution: true
-            }, {
-                parentID: 2,
-                question: 'Filmes são novos meios de entretenimento na atualidade?',
+                question: 'The earth is Flat?',
                 resolution: false
             }, {
                 parentID: 2,
-                question: 'Serjão matou uma onça?',
+                question: "In JS, 1 + '1' = 11",
                 resolution: true
             }
         ],
-        title: 'teste',
-        likes: 0,
-        dislikes: 0,
+        title: 'MY FIRST DECK'
     }]
 }
 
 const initialDeck = ({ decks }, newDeck) => {
     newDeck.id = Math.random() * 10 + Math.random() * 10;
     newDeck.itens = [];
-    newDeck.likes = 0;
-    newDeck.dislikes = 0;
     return [...decks, newDeck]
 }
 
@@ -36,19 +28,6 @@ const questDeck = ({ decks }, newQuestion) => {
     let newDecks = decks.map( deck => 
         deck.id === newQuestion.parentID 
         ? {...deck, itens: [...deck.itens, newQuestion]}
-        : deck
-    )
-    return [...newDecks]
-}
-
-const setVote = ({ decks, likes, dislikes }, vote) => {
-    let newDecks = decks.map(deck => 
-        deck.id === vote.parentID
-        ? { 
-            ...deck, 
-            likes: vote.option === true ? deck.likes + 1 : deck.likes, 
-            dislikes: vote.option === false ? deck.dislikes + 1 : deck.dislikes 
-        }
         : deck
     )
     return [...newDecks]

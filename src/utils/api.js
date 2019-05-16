@@ -7,7 +7,6 @@ addDeck = async (data) => {
         await AsyncStorage.setItem(`${chave}:deck`, data);
         return true;
     } catch (error) {
-        console.error(error)
         return false;
     }
 }
@@ -17,7 +16,6 @@ listDecks = async () => {
         const decks = await AsyncStorage.getItem(`${chave}:deck`);
         return decks;
     } catch (error) {
-        console.error(error)
         return false;
     }
 }

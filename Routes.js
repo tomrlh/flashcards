@@ -22,16 +22,15 @@ const renderBackButton = () => {
 
 class Routes extends Component {
     render() {
-        console.log('router', this.props)
         return (
 
             <Router>
                 <Scene key="root" titleStyle={styles.navTitle} navigationBarStyle={styles.nav} navBarButtonColor={"#FFF"}>
-                    <Scene initial key="home" component={(props) => <Home {...props} />} title="Decks" hideNavBar={false} />
-                    <Scene key="deckView" renderBackButton={() => renderBackButton()} component={(props) => <DeckView {...props} />} title="Deck View" hideNavBar={false} onBack={() => Actions.home()} />
-                    <Scene key="deckForm" component={(props) => <DeckForm {...props} />} title="Deck Form" hideNavBar={false} />
-                    <Scene key="cardForm" component={(props) => <CardForm {...props} />} title="Card Form" hideNavBar={false} />
-                    <Scene key="play"  component={(props) => <Play {...props} />} title="Play View" hideNavBar={false} />
+                    <Scene initial key="home" component={(props) => <Home {...props} />} title="DECKS" hideNavBar={false} />
+                    <Scene key="deckView" renderBackButton={() => renderBackButton()} component={(props) => <DeckView {...props} />} title="DECK DETAILS" hideNavBar={false} onBack={() => Actions.home()} />
+                    <Scene key="deckForm" component={(props) => <DeckForm {...props} />} title="NEW DECK" hideNavBar={false} />
+                    <Scene key="cardForm" component={(props) => <CardForm {...props} />} title="NEW CARD" hideNavBar={false} />
+                    <Scene key="play"  component={(props) => <Play {...props} />} title="PLAY" hideNavBar={false} />
                 </Scene>
             </Router>
 

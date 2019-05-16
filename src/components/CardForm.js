@@ -5,7 +5,6 @@ import { Text, FormValidationMessage, Button } from 'react-native-elements'
 import { addQuestion } from '../actions/decks'
 import { validateNecessary } from '../utils/validate'
 import { Actions } from 'react-native-router-flux'
-import styles from '../styles'
 
 class QuestionForm extends Component {
 
@@ -34,61 +33,54 @@ class QuestionForm extends Component {
     }
 
     componentDidUpdate(oldProps) {
-        this.props.decks !== oldProps.decks && Actions.popTo('deckView', {id: this.props.parentID, color: this.props});
+        this.props.decks !== oldProps.decks && Actions.popTo('deckView', {id: this.props.parentID});
     }
 
     render() {
-        const color = this.props.color;
-
         return (
-
-            <View style={[styles.page, { backgroundColor: color }]}>
-                <View style={[styles.pagePanel, { padding: 20 }]}>
-                    <View style={[styles.pageHeader, { flex: 1, width: '100%', padding: 10, justifyContent: 'center', alignItems: 'center' }]}>
-                        <View style={styles.inputPanel}>
-                            <Text h4 style={[styles.text, { color: color }]}>Question*:</Text>
+            <View>
+                <View style={{padding: 20}}>
+                    <View style={{ flex: 1, width: '100%', padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                        <View>
+                            <Text h4>THE QUESTION:</Text>
                             
                             <TextInput
-                                style={[styles.input, { borderColor: color, color: color }]}
-                                placeholder="Insert question of the card"
+                                style={{ width: '100%', height: 50, borderWidth: 1, padding: 10, color: 'black' }}
                                 onChangeText={(text) => this.setState({question: text})}
                                 value={this.state.question}
                             />
                             {
                                 this.state.err && this.state.err.map((error, index) => {
                                     if (error.input === 'Question') {
-                                        return <FormValidationMessage key={index}>Error: {error.msg}</FormValidationMessage>
+                                        return <Text style={{marginTop: -5}} key={index}>Select the proper answer now</Text>
                                     }
                                 })
                             }
                         </View>
-                        <View style={styles.inputPanel}>
-                            <View style={[styles.input, { borderColor: color, color: color, marginTop: 5, padding: 5 }]}>
+                        <View>
+                            <View style={{ marginTop: 5, padding: 5, marginTop: 80 }}>
                                 <Picker
                                     selectedValue={this.state.resolution}
-                                    style={{ color: color }}
                                     onValueChange={(itemValue, itemIndex) => this.setState({resolution: itemValue})}
                                 >
-                                    <Picker.Item label="Select Resolution!" value={undefined} />
-                                    <Picker.Item label="Correct" value={true} />
-                                    <Picker.Item label="Incorrect" value={false} />
+                                    <Picker.Item label="SELECT" value={undefined} />
+                                    <Picker.Item label="YES" value={true} />
+                                    <Picker.Item label="NO" value={false} />
                                 </Picker>
                             </View>
                             
                             {
                                 this.state.err && this.state.err.map((error, index) => {
                                     if (error.input === 'Resolution') {
-                                        return <FormValidationMessage key={index}>Error: {error.msg}</FormValidationMessage>
+                                        return <Text style={{marginTop: -5}} key={index}>Select the proper answer now</Text>
                                     }
                                 })
                             }
                         </View>
                     </View>
-                    <View style={styles.pageBody}>
+                    <View style={{ marginTop: 140 }}>
                         <Button
-                            buttonStyle={[styles.button, { backgroundColor: color, padding: 16 }]}
-                            icon={{name: 'plus-circle', type: 'font-awesome'}}
-                            title='Create Card' 
+                            title='ADD'
                             onPress={() => this.confirm()}
                         />
                     </View>
